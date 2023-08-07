@@ -177,23 +177,23 @@ Arguments keyword is only available in regular functions
 
 /////////////////////////////////
 
-// Primitive and Reference Types
+// // Primitive and Reference Types
 
-let age = 27;
-let oldAge = age;
-age = 28;
-console.log(age);
-console.log(oldAge);
+// let age = 27;
+// let oldAge = age;
+// age = 28;
+// console.log(age);
+// console.log(oldAge);
 
-const me = {
-  name: 'Jonas',
-  age: 30,
-};
+// const me = {
+//   name: 'Jonas',
+//   age: 30,
+// };
 
-const friend = me;
-friend.age = 23;
-console.log('Friend', friend);
-console.log('Me', me);
+// const friend = me;
+// friend.age = 23;
+// console.log('Friend', friend);
+// console.log('Me', me);
 
 /*
 
@@ -204,5 +204,50 @@ A value at a certain memory address is immutable.
 When we declare a variable as an object an identifier is created which points to a piece of memory in the stack, which in turn points to a piece of memory in the heap, and in the heap is where the object is stored. (they are stored in  the heap because they can be too large to the stack, which is like an almost unlimited memory pool) and the stack just keeps an reference to where the object is stored in the heap.
 
 Const are immutable only for primitive values.
+
+*/
+
+// Primitive types
+let lastName = 'Oliveira';
+let oldLastName = lastName;
+lastName = 'Test';
+console.log(lastName, oldLastName);
+
+// Reference types
+const gabriel = {
+  fisrtName: 'Gabriel',
+  lastName: 'Oliveira',
+  age: 27,
+};
+const marriedGabriel = gabriel;
+marriedGabriel.lastName = 'Test2';
+console.log('---------------------');
+console.log('Before marriage: ', gabriel);
+console.log('After marriage: ', gabriel);
+// marriedGabriel = {};
+
+// Copying objects
+const gabriel2 = {
+  firstName: 'Gabriel',
+  lastName: 'Test3',
+  age: 27,
+  family: ['jklm', 'opqr'],
+};
+
+const gabrielCopy = Object.assign({}, gabriel2);
+gabrielCopy.lastName = 'Test4';
+
+gabrielCopy.family.push('1234');
+gabrielCopy.family.push('5678');
+
+console.log('---------------------');
+console.log('Before marriage: ', gabriel2);
+console.log('After marriage: ', gabrielCopy);
+
+/*
+
+Object.assign only works on the first level, if we have another object inside, it will still point to the same place in memory, so, Object.assign only create a shallow copy, not a deep clone
+
+To deep clone would use somethin like a external library like lo-Dash
 
 */
