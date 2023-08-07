@@ -110,56 +110,56 @@
 
 // test.calcAge = gabriel.calcAge; //Method borrowing
 // test.calcAge();
-/* We can see that the 'this' keyword points to test, since it is the object that is calling the method. Althouth the 'this' keyword is inside gabriel object */
+/* We can see that the 'this' keyword points to test, since it is the object that is calling the method. Although the 'this' keyword is inside gabriel object */
 
 /////////////////////////////////
 
-// Regular and Arrow Functions
-var firstName = 'Test';
+// // Regular and Arrow Functions
+// var firstName = 'Test';
 
-const gabriel = {
-  firstName: 'Gabriel',
-  year: 1997,
-  calcAge: function () {
-    // console.log(this);
-    console.log(2040 - this.year);
+// const gabriel = {
+//   firstName: 'Gabriel',
+//   year: 1997,
+//   calcAge: function () {
+//     // console.log(this);
+//     console.log(2040 - this.year);
 
-    // Solution 1
-    // const self = this;
-    // const isMillenial = function () {
-    //   console.log(self);
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    // };
+//     // Solution 1
+//     // const self = this;
+//     // const isMillenial = function () {
+//     //   console.log(self);
+//     //   console.log(self.year >= 1981 && self.year <= 1996);
+//     // };
 
-    // Solution 2
-    const isMillenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
+//     // Solution 2
+//     const isMillenial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
 
-    isMillenial();
-  },
+//     isMillenial();
+//   },
 
-  greet: function () {
-    console.log(this);
-    console.log(`Hey ${this.firstName}`);
-  },
-};
-gabriel.greet();
-gabriel.calcAge();
+//   greet: function () {
+//     console.log(this);
+//     console.log(`Hey ${this.firstName}`);
+//   },
+// };
+// gabriel.greet();
+// gabriel.calcAge();
 
-// Arguments keyword
-var addExpre = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpre(2, 5);
+// // Arguments keyword
+// var addExpre = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpre(2, 5);
 
-var addArrow = (a, b) => {
-  console.log(arguments);
-  a + b;
-};
-addArrow(5, 4);
+// var addArrow = (a, b) => {
+//   console.log(arguments);
+//   a + b;
+// };
+// addArrow(5, 4);
 
 /*
 
@@ -172,5 +172,37 @@ As a best pratice, never use arrow function as a method, just use a normal funct
 Inside a regular function call, that this keyword must be undefined
 
 Arguments keyword is only available in regular functions
+
+*/
+
+/////////////////////////////////
+
+// Primitive and Reference Types
+
+let age = 27;
+let oldAge = age;
+age = 28;
+console.log(age);
+console.log(oldAge);
+
+const me = {
+  name: 'Jonas',
+  age: 30,
+};
+
+const friend = me;
+friend.age = 23;
+console.log('Friend', friend);
+console.log('Me', me);
+
+/*
+
+Reference types are stored in memory heap, and primitive types are stored in the execution contexts in which they are declared (in the call stack).
+
+A value at a certain memory address is immutable.
+
+When we declare a variable as an object an identifier is created which points to a piece of memory in the stack, which in turn points to a piece of memory in the heap, and in the heap is where the object is stored. (they are stored in  the heap because they can be too large to the stack, which is like an almost unlimited memory pool) and the stack just keeps an reference to where the object is stored in the heap.
+
+Const are immutable only for primitive values.
 
 */
