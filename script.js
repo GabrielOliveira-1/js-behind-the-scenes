@@ -83,31 +83,94 @@
 
 // console.log(this);
 
-const calcAge = function (birthYear) {
-  console.log(2040 - birthYear);
-  //   console.log(this);
-};
-calcAge(1997);
+// const calcAge = function (birthYear) {
+//   console.log(2040 - birthYear);
+//   //   console.log(this);
+// };
+// calcAge(1997);
 
-const calcAgeArrow = birthYear => {
-  console.log(2040 - birthYear);
-  //   console.log(this);
-};
-calcAgeArrow(1997);
+// const calcAgeArrow = birthYear => {
+//   console.log(2040 - birthYear);
+//   //   console.log(this);
+// };
+// calcAgeArrow(1997);
+
+// const gabriel = {
+//   year: 1997,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2040 - this.year);
+//   },
+// };
+// gabriel.calcAge();
+
+// const test = {
+//   year: 2012,
+// };
+
+// test.calcAge = gabriel.calcAge; //Method borrowing
+// test.calcAge();
+/* We can see that the 'this' keyword points to test, since it is the object that is calling the method. Althouth the 'this' keyword is inside gabriel object */
+
+/////////////////////////////////
+
+// Regular and Arrow Functions
+var firstName = 'Test';
 
 const gabriel = {
+  firstName: 'Gabriel',
   year: 1997,
   calcAge: function () {
-    console.log(this);
+    // console.log(this);
     console.log(2040 - this.year);
+
+    // Solution 1
+    // const self = this;
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // };
+
+    // Solution 2
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    isMillenial();
+  },
+
+  greet: function () {
+    console.log(this);
+    console.log(`Hey ${this.firstName}`);
   },
 };
+gabriel.greet();
 gabriel.calcAge();
 
-const test = {
-  year: 2012,
+// Arguments keyword
+var addExpre = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
+addExpre(2, 5);
 
-test.calcAge = gabriel.calcAge; //Method borrowing
-test.calcAge();
-/* We can see that the 'this' keyword points to test, since it is the object that is calling the method. Althouth the 'this' keyword is inside gabriel object */
+var addArrow = (a, b) => {
+  console.log(arguments);
+  a + b;
+};
+addArrow(5, 4);
+
+/*
+
+Inside arrow function will never be a this keyword the arrow function will use the this keyword from its surroundings, in this case, from the global scope 
+
+When you try to access a property that doesn't exist from an object, it won't return an error, it will return undefined
+
+As a best pratice, never use arrow function as a method, just use a normal function expression
+
+Inside a regular function call, that this keyword must be undefined
+
+Arguments keyword is only available in regular functions
+
+*/
